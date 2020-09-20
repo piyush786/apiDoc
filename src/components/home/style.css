@@ -1,0 +1,52 @@
+.loader {
+    display: block;
+    margin: 25% auto;
+}
+
+.main-heading {
+    margin-top: 30px;
+    font-size: 40px;
+}
+
+.main-heading small {
+    font-size: 20px;
+}
+
+.badge {
+    margin : 0 10px; 
+    text-transform: capitalize;
+}
+
+.jumbotron {
+    padding: 20px
+}
+
+.defButton {
+    margin:10px
+}
+
+.modal-xl {
+    max-width: 90% !important;
+}
+
+.modal-body {
+    max-height: 500px;
+    overflow-y: scroll;
+}
+
+.btn-primary {
+    margin : 0 5px;
+}
+
+.btn.btn-primary:first-of-type {
+    margin-left : 0px;
+}
+
+
+
+pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.string { color: rgb(31, 105, 31); }
+.number { color: rgb(165, 106, 34); }
+.boolean { color: rgb(33, 33, 175); }
+.null { color: rgb(156, 23, 156); }
+.key { color: rgb(167, 22, 22); }

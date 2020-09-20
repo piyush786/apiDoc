@@ -1,0 +1,779 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: beneficiarymanagementservicehttpservice
+  title: BeneficiaryManagementServiceHttpService
+  version: 1.0.0
+  description: ""
+schemes:
+- https
+basePath: /v1
+consumes:
+- application/xml
+securityDefinitions:
+  client-secret:
+    type: apiKey
+    description: ""
+    in: header
+    name: X-IBM-Client-Secret
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+- clientIdHeader: []
+  client-secret: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /addBeneficiary:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/addBeneficiary-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /modifyBeneficiary:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/modifyBeneficiary-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /getBeneficiary:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/getBeneficiary-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /getAllBeneficiaries:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/getAllBeneficiaries-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+definitions:
+  addBeneficiary-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              addBeneficiary:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  uniqueRequestNo:
+                    type: string
+                  appID:
+                    type: string
+                  customerID:
+                    type: string
+                  beneficiaryDetail:
+                    type: object
+                    properties:
+                      beneficiaryID:
+                        type: string
+                      beneficiaryTransferType:
+                        type: string
+                      beneficiaryName:
+                        type: string
+                      beneficiaryAccountNo:
+                        type: string
+                      beneficiaryIFSC:
+                        type: string
+                      beneficiaryDescription:
+                        type: string
+                      beneficiaryEmailID:
+                        type: string
+                      beneficiaryMobileNo:
+                        type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <tns:addBeneficiary xmlns:tns="http://www.quantiguous.com/services"><!--
+      mandatory -->
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:uniqueRequestNo><!-- mandatory -->string</tns:uniqueRequestNo>
+         <tns:appID><!-- mandatory -->string</tns:appID>
+         <tns:customerID><!-- mandatory -->string</tns:customerID>
+         <tns:beneficiaryDetail><!-- mandatory -->
+          <tns:beneficiaryID><!-- mandatory -->string</tns:beneficiaryID>
+          <tns:beneficiaryTransferType><!-- mandatory
+      -->string</tns:beneficiaryTransferType>
+          <tns:beneficiaryName><!-- mandatory -->string</tns:beneficiaryName>
+          <tns:beneficiaryAccountNo><!-- mandatory
+      -->string</tns:beneficiaryAccountNo>
+          <tns:beneficiaryIFSC>string</tns:beneficiaryIFSC>
+          <tns:beneficiaryDescription>string</tns:beneficiaryDescription>
+          <tns:beneficiaryEmailID>string</tns:beneficiaryEmailID>
+          <tns:beneficiaryMobileNo>string</tns:beneficiaryMobileNo>
+         </tns:beneficiaryDetail>
+        </tns:addBeneficiary>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  addBeneficiary-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              addBeneficiaryResponse:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  uniqueResponseNo:
+                    type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Body>
+        <tns:addBeneficiaryResponse xmlns:tns="http://www.quantiguous.com/services">
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:uniqueResponseNo><!-- mandatory -->string</tns:uniqueResponseNo>
+        </tns:addBeneficiaryResponse>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  modifyBeneficiary-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              modifyBeneficiary:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  uniqueRequestNo:
+                    type: string
+                  appID:
+                    type: string
+                  customerID:
+                    type: string
+                  beneficiaryDetail:
+                    type: object
+                    properties:
+                      beneficiaryID:
+                        type: string
+                      beneficiaryTransferType:
+                        type: string
+                      beneficiaryName:
+                        type: string
+                      beneficiaryAccountNo:
+                        type: string
+                      beneficiaryIFSC:
+                        type: string
+                      beneficiaryDescription:
+                        type: string
+                      beneficiaryEmailID:
+                        type: string
+                      beneficiaryMobileNo:
+                        type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <tns:modifyBeneficiary xmlns:tns="http://www.quantiguous.com/services"><!--
+      mandatory -->
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:uniqueRequestNo><!-- mandatory -->string</tns:uniqueRequestNo>
+         <tns:appID><!-- mandatory -->string</tns:appID>
+         <tns:customerID><!-- mandatory -->string</tns:customerID>
+         <tns:beneficiaryDetail><!-- mandatory -->
+          <tns:beneficiaryID><!-- mandatory -->string</tns:beneficiaryID>
+          <tns:beneficiaryTransferType><!-- mandatory
+      -->string</tns:beneficiaryTransferType>
+          <tns:beneficiaryName><!-- mandatory -->string</tns:beneficiaryName>
+          <tns:beneficiaryAccountNo><!-- mandatory
+      -->string</tns:beneficiaryAccountNo>
+          <tns:beneficiaryIFSC>string</tns:beneficiaryIFSC>
+          <tns:beneficiaryDescription>string</tns:beneficiaryDescription>
+          <tns:beneficiaryEmailID>string</tns:beneficiaryEmailID>
+          <tns:beneficiaryMobileNo>string</tns:beneficiaryMobileNo>
+         </tns:beneficiaryDetail>
+        </tns:modifyBeneficiary>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  modifyBeneficiary-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              modifyBeneficiaryResponse:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  uniqueResponseNo:
+                    type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Body>
+        <tns:modifyBeneficiaryResponse
+      xmlns:tns="http://www.quantiguous.com/services">
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:uniqueResponseNo><!-- mandatory -->string</tns:uniqueResponseNo>
+        </tns:modifyBeneficiaryResponse>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  getBeneficiary-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              getBeneficiary:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  appID:
+                    type: string
+                  customerID:
+                    type: string
+                  beneficiaryID:
+                    type: string
+                  beneficiaryTransferType:
+                    type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <tns:getBeneficiary xmlns:tns="http://www.quantiguous.com/services"><!--
+      mandatory -->
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:appID><!-- mandatory -->string</tns:appID>
+         <tns:customerID><!-- mandatory -->string</tns:customerID>
+         <tns:beneficiaryID><!-- mandatory -->string</tns:beneficiaryID>
+         <tns:beneficiaryTransferType><!-- mandatory
+      -->string</tns:beneficiaryTransferType>
+        </tns:getBeneficiary>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  getBeneficiary-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              getBeneficiaryResponse:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  getbeneficiaryDetail:
+                    type: object
+                    properties:
+                      beneficiaryID:
+                        type: string
+                      beneficiaryTransferType:
+                        type: string
+                      beneficiaryName:
+                        type: string
+                      beneficiaryAccountNo:
+                        type: string
+                      beneficiaryIFSC:
+                        type: string
+                      beneficiaryDescription:
+                        type: string
+                      beneficiaryEmailID:
+                        type: string
+                      beneficiaryMobileNo:
+                        type: string
+                      beneficiaryBankName:
+                        type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Body>
+        <tns:getBeneficiaryResponse xmlns:tns="http://www.quantiguous.com/services">
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:getbeneficiaryDetail><!-- mandatory -->
+          <tns:beneficiaryID><!-- mandatory -->string</tns:beneficiaryID>
+          <tns:beneficiaryTransferType><!-- mandatory
+      -->string</tns:beneficiaryTransferType>
+          <tns:beneficiaryName><!-- mandatory -->string</tns:beneficiaryName>
+          <tns:beneficiaryAccountNo><!-- mandatory
+      -->string</tns:beneficiaryAccountNo>
+          <tns:beneficiaryIFSC>string</tns:beneficiaryIFSC>
+          <tns:beneficiaryDescription>string</tns:beneficiaryDescription>
+          <tns:beneficiaryEmailID>string</tns:beneficiaryEmailID>
+          <tns:beneficiaryMobileNo>string</tns:beneficiaryMobileNo>
+          <tns:beneficiaryBankName>string</tns:beneficiaryBankName>
+         </tns:getbeneficiaryDetail>
+        </tns:getBeneficiaryResponse>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  getAllBeneficiaries-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              getAllBeneficiaries:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  appID:
+                    type: string
+                  customerID:
+                    type: string
+                  numBeneficiaries:
+                    type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <tns:getAllBeneficiaries xmlns:tns="http://www.quantiguous.com/services"><!--
+      mandatory -->
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:appID><!-- mandatory -->string</tns:appID>
+         <tns:customerID><!-- mandatory -->string</tns:customerID>
+         <tns:numBeneficiaries><!-- mandatory -->4</tns:numBeneficiaries>
+        </tns:getAllBeneficiaries>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  getAllBeneficiaries-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              getAllBeneficiariesResponse:
+                type: object
+                properties:
+                  version:
+                    type: string
+                  numBeneficiaries:
+                    type: string
+                  beneficiaryArray:
+                    type: object
+                    properties:
+                      getbeneficiaryDetail:
+                        type: object
+                        properties:
+                          beneficiaryID:
+                            type: string
+                          beneficiaryTransferType:
+                            type: string
+                          beneficiaryName:
+                            type: string
+                          beneficiaryAccountNo:
+                            type: string
+                          beneficiaryIFSC:
+                            type: string
+                          beneficiaryDescription:
+                            type: string
+                          beneficiaryEmailID:
+                            type: string
+                          beneficiaryMobileNo:
+                            type: string
+                          beneficiaryBankName:
+                            type: string
+                xml:
+                  namespace: http://www.quantiguous.com/services
+                  prefix: tns
+        xml:
+          namespace: http://www.w3.org/2003/05/soap-envelope
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+       <soapenv:Body>
+        <tns:getAllBeneficiariesResponse
+      xmlns:tns="http://www.quantiguous.com/services">
+         <tns:version><!-- mandatory -->string</tns:version>
+         <tns:numBeneficiaries><!-- mandatory -->3</tns:numBeneficiaries>
+         <tns:beneficiaryArray><!-- mandatory -->
+          <tns:getbeneficiaryDetail><!-- between zero and unlimited repetitions of
+      this element -->
+           <tns:beneficiaryID><!-- mandatory -->string</tns:beneficiaryID>
+           <tns:beneficiaryTransferType><!-- mandatory
+      -->string</tns:beneficiaryTransferType>
+           <tns:beneficiaryName><!-- mandatory -->string</tns:beneficiaryName>
+           <tns:beneficiaryAccountNo><!-- mandatory
+      -->string</tns:beneficiaryAccountNo>
+           <tns:beneficiaryIFSC>string</tns:beneficiaryIFSC>
+           <tns:beneficiaryDescription>string</tns:beneficiaryDescription>
+           <tns:beneficiaryEmailID>string</tns:beneficiaryEmailID>
+           <tns:beneficiaryMobileNo>string</tns:beneficiaryMobileNo>
+           <tns:beneficiaryBankName>string</tns:beneficiaryBankName>
+          </tns:getbeneficiaryDetail>
+         </tns:beneficiaryArray>
+        </tns:getAllBeneficiariesResponse>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+tags: []
+produces:
+- application/xml
+x-ibm-endpoints:
+- endpointUrl: https://uatsky.yesbank.in/ybl/yblsandbox
+  type:
+  - production
+  - development
+...

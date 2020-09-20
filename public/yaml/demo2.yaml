@@ -1,0 +1,52 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: token
+  title: Token
+  version: v1
+  description: API Generates a JWT token for a set of Client ID & Client Secret.
+schemes:
+- https
+basePath: /
+consumes:
+- application/json
+produces:
+- application/json
+securityDefinitions:
+  clientSecret:
+    type: apiKey
+    description: Client secret generated on connect portal
+    in: header
+    name: X-IBM-Client-Secret
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+    description: Client Id generated on connect portal
+security:
+- clientIdHeader: []
+  clientSecret: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /v1/tokens:
+    get:
+      responses:
+        200:
+          description: 200 OK
+definitions:
+  Response:
+    properties:
+      accessToken:
+        type: string
+    additionalProperties: false
+    description: The access token return for the client Id and secret.
+tags: []
+x-ibm-endpoints:
+- endpointUrl: https://uatsky.yesbank.in/ybl/yblsandbox
+  type:
+  - production
+  - development
+...

@@ -1,0 +1,2384 @@
+---
+swagger: "2.0"
+info:
+  x-ibm-name: accountmanagmentservice
+  title: AccountManagmentService
+  version: 1.0.0
+  description: ""
+schemes:
+- https
+basePath: /v1
+consumes:
+- application/xml
+securityDefinitions:
+  client-secret:
+    type: apiKey
+    description: ""
+    in: header
+    name: X-IBM-Client-Secret
+  clientIdHeader:
+    type: apiKey
+    in: header
+    name: X-IBM-Client-Id
+security:
+- clientIdHeader: []
+  client-secret: []
+x-ibm-configuration:
+  testable: true
+  enforced: true
+  phase: realized
+paths:
+  /GetCASADetails:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetCASADetails-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /GetCASABalance:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetCASABalance-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /GetFDAccDetails:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetFDAccDetails-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /GetFDRDProductCodes:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetFDRDProductCodes-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /CreateRDAcc:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/CreateRDAcc-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /GetMiniStatement:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetMiniStatement-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+  /GetFDRDProductRates:
+    parameters:
+    - name: body
+      required: true
+      in: body
+      schema:
+        $ref: '#/definitions/GetRDFDProductRates-req'
+    - name: authorization
+      type: string
+      required: true
+      in: header
+    post:
+      responses:
+        200:
+          description: 200 OK
+definitions:
+  GetCASADetails-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetCASADetailsReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      CustomerId:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetCASADetailsReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:AccountNumber><!-- mandatory -->3</amt:AccountNumber>
+          <amt:CustomerId><!-- mandatory -->string</amt:CustomerId>
+         </amt:ReqBody>
+        </amt:GetCASADetailsReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetCASADetails-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              GetCASADetailsRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      SecondaryAccountHolderName:
+                        type: string
+                      RequiredQuaterlyBalance:
+                        type: string
+                      CurrentQuaterlyBalance:
+                        type: string
+                      MMID:
+                        type: string
+                      IFSCCode:
+                        type: string
+                      NomineeName:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:GetCASADetailsRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:AccountNumber>3</amt:AccountNumber>
+          <amt:SecondaryAccountHolderName>string</amt:SecondaryAccountHolderName>
+          <amt:RequiredQuaterlyBalance>3.14</amt:RequiredQuaterlyBalance>
+          <amt:CurrentQuaterlyBalance>3.14</amt:CurrentQuaterlyBalance>
+          <amt:MMID>string</amt:MMID>
+          <amt:IFSCCode>string</amt:IFSCCode>
+          <amt:NomineeName>string</amt:NomineeName>
+         </amt:ResBody>
+        </amt:GetCASADetailsRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetCASABalance-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetCASABalanceReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      TransactionBranch:
+                        type: string
+                      Channel:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetCASABalanceReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:AccountNumber><!-- mandatory -->string</amt:AccountNumber>
+          <amt:TransactionBranch><!-- mandatory -->string</amt:TransactionBranch>
+          <amt:Channel><!-- mandatory -->string</amt:Channel>
+         </amt:ReqBody>
+        </amt:GetCASABalanceReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetCASABalance-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              GetCASABalanceRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      Status:
+                        type: string
+                      AccountBalance:
+                        type: string
+                      AccountOperationalStatus:
+                        type: string
+                      AccountStatus:
+                        type: string
+                      AvailableBalance:
+                        type: string
+                      ClearBalance:
+                        type: string
+                      UnClearBalance:
+                        type: string
+                      DrawingPower:
+                        type: string
+                      HoldBalance:
+                        type: string
+                      MinimumBalance:
+                        type: string
+                      NetWithdrawalBalance:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:GetCASABalanceRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:Status><!-- mandatory -->string</amt:Status>
+          <amt:AccountBalance><!-- mandatory -->3</amt:AccountBalance>
+          <amt:AccountOperationalStatus><!-- mandatory
+      -->string</amt:AccountOperationalStatus>
+          <amt:AccountStatus><!-- mandatory -->string</amt:AccountStatus>
+          <amt:AvailableBalance><!-- mandatory -->3</amt:AvailableBalance>
+          <amt:ClearBalance><!-- mandatory -->3</amt:ClearBalance>
+          <amt:UnClearBalance><!-- mandatory -->3</amt:UnClearBalance>
+          <amt:DrawingPower><!-- mandatory -->3</amt:DrawingPower>
+          <amt:HoldBalance><!-- mandatory -->3</amt:HoldBalance>
+          <amt:MinimumBalance><!-- mandatory -->3</amt:MinimumBalance>
+          <amt:NetWithdrawalBalance><!-- mandatory -->3</amt:NetWithdrawalBalance>
+         </amt:ResBody>
+        </amt:GetCASABalanceRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetFDAccDetails-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetCASADetailsReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      CustomerId:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+       xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetCASADetailsReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:AccountNumber><!-- mandatory -->3</amt:AccountNumber>
+          <amt:CustomerId><!-- mandatory -->string</amt:CustomerId>
+         </amt:ReqBody>
+        </amt:GetCASADetailsReq>
+       </soapenv:Body>
+
+
+      </soapenv:Envelope>
+  GetFDAccDetails-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              CreateFDAccRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      TDAccountNumber:
+                        type: string
+                      AccountTitle:
+                        type: string
+                      NetInterestRate:
+                        type: string
+                      PayInAmount:
+                        type: string
+                      MaturityAmount:
+                        type: string
+                      MaturityDate:
+                        type: string
+                      DepositNumber:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:CreateFDAccRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:TDAccountNumber>string</amt:TDAccountNumber>
+          <amt:AccountTitle>string</amt:AccountTitle>
+          <amt:NetInterestRate>3</amt:NetInterestRate>
+          <amt:PayInAmount>3</amt:PayInAmount>
+          <amt:MaturityAmount>3</amt:MaturityAmount>
+          <amt:MaturityDate>2016-04-18</amt:MaturityDate>
+          <amt:DepositNumber>string</amt:DepositNumber>
+         </amt:ResBody>
+        </amt:CreateFDAccRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetFDRDProductCodes-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetFDRDProductCodesReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      CustomerId:
+                        type: string
+                      ProductType:
+                        type: string
+                      AccountNumber:
+                        type: string
+                      BranchCode:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetFDRDProductCodesReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:CustomerId>string</amt:CustomerId>
+          <amt:ProductType><!-- mandatory -->string</amt:ProductType>
+          <amt:AccountNumber>string</amt:AccountNumber>
+          <amt:BranchCode>string</amt:BranchCode>
+         </amt:ReqBody>
+        </amt:GetFDRDProductCodesReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetFDRDProductCodes-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              GetFDRDProductCodesRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      ProductDetails:
+                        type: object
+                        properties:
+                          ProductCode:
+                            type: string
+                          ProductName:
+                            type: string
+                          ProductType:
+                            type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:GetFDRDProductCodesRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:ProductDetails><!-- between zero and unlimited repetitions of this
+      element -->
+           <amt:ProductCode><!-- mandatory -->string</amt:ProductCode>
+           <amt:ProductName><!-- mandatory -->string</amt:ProductName>
+           <amt:ProductType><!-- mandatory -->string</amt:ProductType>
+          </amt:ProductDetails>
+         </amt:ResBody>
+        </amt:GetFDRDProductCodesRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  CreateRDAcc-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              CreateRDAccReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      CustomerId:
+                        type: string
+                      FlgJointHolder:
+                        type: string
+                      ProductCode:
+                        type: string
+                      AccountNumber:
+                        type: string
+                      InstallmentAmount:
+                        type: string
+                      TermPeriod:
+                        type: string
+                      MinorAcctStatus:
+                        type: string
+                      ProviderGLAccountNo:
+                        type: string
+                      ReferenceNoGL:
+                        type: string
+                      BranchCodeGL:
+                        type: string
+                      BranchCodeRD:
+                        type: string
+                      PAN:
+                        type: string
+                      TransactionBranch:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:CreateRDAccReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:CustomerId><!-- mandatory -->string</amt:CustomerId>
+          <amt:FlgJointHolder><!-- mandatory -->string</amt:FlgJointHolder>
+          <amt:ProductCode><!-- mandatory -->string</amt:ProductCode>
+          <amt:AccountNumber><!-- mandatory -->string</amt:AccountNumber>
+          <amt:InstallmentAmount><!-- mandatory -->3</amt:InstallmentAmount>
+          <amt:TermPeriod><!-- mandatory -->string</amt:TermPeriod>
+          <amt:MinorAcctStatus>string</amt:MinorAcctStatus>
+          <amt:ProviderGLAccountNo>string</amt:ProviderGLAccountNo>
+          <amt:ReferenceNoGL>string</amt:ReferenceNoGL>
+          <amt:BranchCodeGL>string</amt:BranchCodeGL>
+          <amt:BranchCodeRD><!-- mandatory -->string</amt:BranchCodeRD>
+          <amt:PAN>string</amt:PAN>
+          <amt:TransactionBranch><!-- mandatory -->string</amt:TransactionBranch>
+         </amt:ReqBody>
+        </amt:CreateRDAccReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  CreateRDAcc-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              CreateRDAccRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      AccountTitle:
+                        type: string
+                      InterestRate:
+                        type: string
+                      MaturityAmount:
+                        type: string
+                      MaturityDate:
+                        type: string
+                      InstallmentAmount:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:CreateRDAccRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:AccountNumber>string</amt:AccountNumber>
+          <amt:AccountTitle>string</amt:AccountTitle>
+          <amt:InterestRate>3</amt:InterestRate>
+          <amt:MaturityAmount>3</amt:MaturityAmount>
+          <amt:MaturityDate>2016-04-18</amt:MaturityDate>
+          <amt:InstallmentAmount>3</amt:InstallmentAmount>
+         </amt:ResBody>
+        </amt:CreateRDAccRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetMiniStatement-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetMiniStatementReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      AccountNumber:
+                        type: string
+                      NoOfTxn:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetMiniStatementReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:AccountNumber><!-- mandatory -->3</amt:AccountNumber>
+          <amt:NoOfTxn><!-- mandatory -->3</amt:NoOfTxn>
+         </amt:ReqBody>
+        </amt:GetMiniStatementReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetMiniStatement-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              GetMiniStatementRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      TxnDetails:
+                        type: object
+                        properties:
+                          TxnDescription:
+                            type: string
+                          TxnAmount:
+                            type: string
+                          TxnDateTime:
+                            type: string
+                          TxnType:
+                            type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:GetMiniStatementRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:TxnDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <amt:TxnDescription>string</amt:TxnDescription>
+           <amt:TxnAmount>3.14</amt:TxnAmount>
+           <amt:TxnDateTime>2016-04-18T14:07:37</amt:TxnDateTime>
+           <amt:TxnType>string</amt:TxnType>
+          </amt:TxnDetails>
+         </amt:ResBody>
+        </amt:GetMiniStatementRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetRDFDProductRates-req:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Header:
+            type: object
+            properties:
+              Security:
+                type: object
+                properties:
+                  UsernameToken:
+                    type: object
+                    properties:
+                      Username:
+                        type: string
+                      Password:
+                        type: string
+                      Nonce:
+                        type: string
+                        properties:
+                          EncodingType:
+                            type: string
+                            xml:
+                              attribute: true
+                      Created:
+                        type: string
+                        xml:
+                          namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                          prefix: wsu
+                  Timestamp:
+                    type: object
+                    properties:
+                      Created:
+                        type: string
+                      Expires:
+                        type: string
+                      Id:
+                        type: string
+                        xml:
+                          attribute: true
+                          prefix: wsu
+                    xml:
+                      namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd
+                      prefix: wsu
+                xml:
+                  namespace: http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd
+                  prefix: wsse
+          Body:
+            type: object
+            properties:
+              GetFDRDProductRatesReq:
+                type: object
+                properties:
+                  ReqHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ReqBody:
+                    type: object
+                    properties:
+                      CustomerId:
+                        type: string
+                      ProductCode:
+                        type: string
+                      TermPeriod:
+                        type: object
+                        properties:
+                          Months:
+                            type: string
+                          Days:
+                            type: string
+                      Amount:
+                        type: string
+                      ProductType:
+                        type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Header>
+        <wsse:Security
+      xmlns:wsse="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+         <wsse:UsernameToken>
+          <wsse:Username>string</wsse:Username>
+          <wsse:Password>string</wsse:Password>
+          <wsse:Nonce EncodingType="string">string</wsse:Nonce>
+          <wsu:Created>string</wsu:Created>
+         </wsse:UsernameToken>
+         <wsu:Timestamp wsu:Id="string">
+          <wsu:Created>string</wsu:Created>
+          <wsu:Expires>string</wsu:Expires>
+         </wsu:Timestamp>
+        </wsse:Security>
+       </soapenv:Header>
+       <soapenv:Body>
+        <amt:GetFDRDProductRatesReq
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement"><!-- mandatory -->
+         <amt:ReqHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+         </amt:ReqHdr>
+         <amt:ReqBody><!-- mandatory -->
+          <amt:CustomerId><!-- mandatory -->string</amt:CustomerId>
+          <amt:ProductCode>string</amt:ProductCode>
+          <amt:TermPeriod>
+           <amt:Months>3</amt:Months>
+           <amt:Days>3</amt:Days>
+          </amt:TermPeriod>
+          <amt:Amount>3</amt:Amount>
+          <amt:ProductType><!-- mandatory -->string</amt:ProductType>
+         </amt:ReqBody>
+        </amt:GetFDRDProductRatesReq>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+  GetRDFDProductRates-res:
+    description: ""
+    type: object
+    properties:
+      Envelope:
+        type: object
+        properties:
+          Body:
+            type: object
+            properties:
+              GetFDRDProductRatesRes:
+                type: object
+                properties:
+                  ResHdr:
+                    type: object
+                    properties:
+                      ConsumerContext:
+                        type: object
+                        properties:
+                          RequesterID:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceContext:
+                        type: object
+                        properties:
+                          ServiceName:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefNum:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ReqRefTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          ServiceVersionNo:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ServiceResponse:
+                        type: object
+                        properties:
+                          EsbResTimeStamp:
+                            type: string
+                            xml:
+                              namespace: ""
+                          EsbResStatus:
+                            type: string
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                      ErrorDetails:
+                        type: object
+                        properties:
+                          ErrorInfo:
+                            type: object
+                            properties:
+                              ErrSrc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrLongDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              EsbErrShortDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrCode:
+                                type: string
+                                xml:
+                                  namespace: ""
+                              HostErrDesc:
+                                type: string
+                                xml:
+                                  namespace: ""
+                            xml:
+                              namespace: ""
+                        xml:
+                          namespace: ""
+                  ResBody:
+                    type: object
+                    properties:
+                      Product:
+                        type: object
+                        properties:
+                          ProductCode:
+                            type: string
+                          ProductName:
+                            type: string
+                          FDProductSlabDetail:
+                            type: object
+                            properties:
+                              MinTermPeriod:
+                                type: object
+                                properties:
+                                  Months:
+                                    type: string
+                                    xml:
+                                      namespace: ""
+                                  Days:
+                                    type: string
+                                    xml:
+                                      namespace: ""
+                              MaxTermPeriod:
+                                type: object
+                                properties:
+                                  Months:
+                                    type: string
+                                    xml:
+                                      namespace: ""
+                                  Days:
+                                    type: string
+                                    xml:
+                                      namespace: ""
+                              InterestRate:
+                                type: string
+                              MinAmount:
+                                type: string
+                              MaxAmount:
+                                type: string
+                          InterestRate:
+                            type: string
+                          TermPeriod:
+                            type: string
+                xml:
+                  namespace: http://xmlns.yesbank.com/WS/AccountManagement
+                  prefix: amt
+        xml:
+          namespace: http://schemas.xmlsoap.org/soap/envelope/
+          prefix: soapenv
+    xml:
+      namespace: ""
+    example: |-
+      <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+       <soapenv:Body>
+        <amt:GetFDRDProductRatesRes
+      xmlns:amt="http://xmlns.yesbank.com/WS/AccountManagement">
+         <amt:ResHdr><!-- mandatory -->
+          <ConsumerContext><!-- mandatory -->
+           <RequesterID><!-- mandatory -->string</RequesterID>
+          </ConsumerContext>
+          <ServiceContext><!-- mandatory -->
+           <ServiceName><!-- mandatory -->string</ServiceName>
+           <ReqRefNum><!-- mandatory -->string</ReqRefNum>
+           <ReqRefTimeStamp><!-- mandatory -->2016-04-18T14:07:37</ReqRefTimeStamp>
+           <ServiceVersionNo>string</ServiceVersionNo>
+          </ServiceContext>
+          <ServiceResponse><!-- mandatory -->
+           <EsbResTimeStamp><!-- mandatory -->2016-04-18T14:07:37</EsbResTimeStamp>
+           <EsbResStatus><!-- mandatory -->3</EsbResStatus>
+          </ServiceResponse>
+          <ErrorDetails><!-- between zero and unlimited repetitions of this element
+      -->
+           <ErrorInfo>
+            <ErrSrc>string</ErrSrc>
+            <EsbErrCode>string</EsbErrCode>
+            <EsbErrLongDesc>string</EsbErrLongDesc>
+            <EsbErrShortDesc>string</EsbErrShortDesc>
+            <HostErrCode>string</HostErrCode>
+            <HostErrDesc>string</HostErrDesc>
+           </ErrorInfo>
+          </ErrorDetails>
+         </amt:ResHdr>
+         <amt:ResBody><!-- mandatory -->
+          <amt:Product><!-- between zero and unlimited repetitions of this element
+      -->
+           <amt:ProductCode>string</amt:ProductCode>
+           <amt:ProductName>string</amt:ProductName>
+           <amt:FDProductSlabDetail><!-- between zero and unlimited repetitions of
+      this element -->
+            <amt:MinTermPeriod>
+             <Months><!-- mandatory -->3</Months>
+             <Days><!-- mandatory -->3</Days>
+            </amt:MinTermPeriod>
+            <amt:MaxTermPeriod>
+             <Months><!-- mandatory -->3</Months>
+             <Days><!-- mandatory -->3</Days>
+            </amt:MaxTermPeriod>
+            <amt:InterestRate>3</amt:InterestRate>
+            <amt:MinAmount>3</amt:MinAmount>
+            <amt:MaxAmount>3</amt:MaxAmount>
+           </amt:FDProductSlabDetail>
+           <amt:InterestRate>3</amt:InterestRate>
+           <amt:TermPeriod>string</amt:TermPeriod>
+          </amt:Product>
+         </amt:ResBody>
+        </amt:GetFDRDProductRatesRes>
+       </soapenv:Body>
+
+      </soapenv:Envelope>
+tags: []
+produces:
+- application/xml
+x-ibm-endpoints:
+- endpointUrl: https://uatsky.yesbank.in/ybl/yblsandbox
+  type:
+  - production
+  - development
+...
